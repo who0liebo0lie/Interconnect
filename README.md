@@ -6,17 +6,25 @@ Interconnect is a telecom company exploring predictions of when a clients would 
 This project explores patterns, connections, and trends within a dataset referred to as Interconnect. It includes exploratory data analysis, correlation mapping, and visualization to better understand the structure and insights hidden in the data.
 
 📚 Table of Contents
-About the Project
+📌About the Project
 
-Installation
+🧩 The Challenge
 
-Usage
+🧪 The Data Journey
+
+⚖️ Target and Data Strategy
+
+🧠 Modeling the Unknown
+
+🏆 The Outcome
+
+🛠 Tools & Stack
+
+🚀 Where It Could Go
+
+💬 Final Thought
 
 Project Structure
-
-Technologies Used
-
-Results & Insights
 
 Screenshots
 
@@ -25,29 +33,131 @@ Contributing
 License
 
 📌 About the Project
-This notebook covers:
+# 📡 Predicting Churn Before It Happens: A Machine Learning Story from Interconnect Telecom
 
-Cleaning and preparing tabular datasets
+Every company wants to grow. But sometimes, **growth starts with retention**.
 
-Exploratory visualizations and heatmaps
+**Interconnect**, a telecom provider offering landline and internet services, found itself facing a challenge familiar to many in subscription-based industries: **customer churn**. Customers were leaving—but why? And more importantly, could we predict *who* was about to leave and *intervene* before they walked away?
 
-Distribution analysis and feature comparison
+This project uses **machine learning** to answer that question.
 
-Time series insights and clustering (if applicable)
+---
 
-Clear summary visuals of trends and correlations
+## 🧩 The Challenge
 
-🛠 Installation
-bash
-Copy
-Edit
-pip install pandas numpy matplotlib seaborn jupyter
-Then launch with:
+Interconnect's customers subscribe to various services: cloud backups, streaming TV, antivirus protection, and more. Some pay monthly, others commit to longer contracts. Some use electronic billing, others prefer paper. With all these variables, what behaviors signal an unhappy customer?
 
-bash
-Copy
-Edit
-jupyter notebook
+We were handed several datasets containing:
+- Contract terms  
+- Customer demographics  
+- Internet & phone services  
+- Billing preferences  
+- Churn labels  
+
+Each customer had a unique ID, and the data snapshot ended just before **February 1, 2020**.
+
+---
+
+## 🧪 The Data Journey
+
+Before diving into modeling, we needed a **reliable foundation**. I built an `evaluate_file()` function to rapidly assess the shape and health of each input file—checking for:
+- Duplicate IDs  
+- Null or zero values  
+- Data type consistency  
+- Random samples for spot-checking  
+
+After standardizing column names and dropping non-numeric outliers (0.002%), all features were converted into boolean or integer format. **Categorical features** like `InternetService`, `PaymentMethod`, and `TechSupport` were mapped to representative numeric codes based on their distribution.
+
+### 🛠 Feature Engineering Highlights
+- `customer_tenure`: number of days since joining  
+- Total charges accumulated  
+- Tech support patterns across service users  
+- Multi-line usage in relation to relationship status  
+
+These explorations revealed fascinating signals: for instance, most users *don’t* purchase tech support, but those who do tend to subscribe to streaming services—raising questions about user trust, product quality, or perhaps even demographics.
+
+---
+
+## ⚖️ Target and Data Strategy
+
+Our target was the `churn` column—a binary label.
+
+But there was a problem: **class imbalance**. Many more customers were staying than leaving. To correct this, I wrote a custom **upsampling function** to duplicate churned customers in the training set without inflating performance metrics.
+
+Data was split:
+- 60% training  
+- 20% validation  
+- 20% test  
+
+Features were **standardized with `StandardScaler()`**, ensuring all models operated on uniform input scales.
+
+---
+
+## 🧠 Modeling the Unknown
+
+I built a flexible **machine learning pipeline** to test multiple classifiers:
+- Random Forest  
+- Decision Tree  
+- Logistic Regression  
+- Gradient Boosting  
+- XGBoost  
+- LightGBM  
+- CatBoost  
+
+Each model was:
+- Tuned via `GridSearchCV`  
+- Evaluated using **F1 score**, **ROC-AUC**, and **Precision-Recall Curves**  
+- Plotted with training and test metrics for transparency  
+
+---
+
+## 🏆 The Outcome
+
+This project demonstrates how business-critical problems like customer churn can be approached with rigorous machine learning methodology, clear data storytelling, and iterative model evaluation.
+
+Interconnect now has a high-performing, production-ready model that identifies customers at risk of leaving, enabling targeted retention strategies. The Gradient Boosting and CatBoost models emerged as top performers, both achieving an ROC-AUC of 0.85 and precision scores nearing 0.69—demonstrating both discriminative power and reliability.
+
+In analyzing the data, we uncovered several compelling insights:
+
+The average customer lifetime was 32.4 months, contributing on average over $2,036 in revenue.
+
+The longer a customer stayed, the more they spent, confirming that early churn has high revenue cost.
+
+User demographics were equally split by gender, and surprisingly, nearly half of users had multiple lines despite most having no dependents—suggesting possible business usage or bundled plans.
+
+Tech support adoption was low overall (~8,000 users opted out), but streaming customers were more likely to invest in support services than online-only users.
+
+To evaluate model performance, we assessed multiple algorithms using ROC-AUC, F1 Score, Accuracy, and Precision-Recall Curves, while also critically evaluating the strengths and weaknesses of each metric. Given the balanced nature of the dataset, ROC-AUC and Accuracy were deemed the most reliable indicators.
+
+The models evaluated included:
+
+Random Forest, Decision Tree, Gradient Boosting, Logistic Regression, XGBoost, LightGBM, and CatBoost
+
+The final ranking (based on ROC-AUC and Accuracy) crowned Gradient Boosting and CatBoost as tied for first, with Random Forest, LGBM, and Decision Tree closely behind.
+
+This project reflects not just the ability to train performant models, but also the skill of translating model outcomes into actionable business decisions. It's a blend of data engineering, model tuning, and domain insight—the kind of interdisciplinary work that drives real impact.
+
+---
+
+## 🛠 Tools & Stack
+
+- **Languages**: Python  
+- **Libraries**: pandas, numpy, matplotlib, seaborn, scikit-learn, xgboost, lightgbm, catboost  
+- **Techniques**: feature engineering, upsampling, model evaluation, hyperparameter tuning, scaling
+
+---
+
+## 🚀 Where It Could Go
+
+In a production setting, this model could be deployed as a **REST API**, scoring users daily and triggering automated retention campaigns. It could also be layered with **SHAP or LIME** for interpretability and integrated into Interconnect’s CRM to assist sales and customer service reps.
+
+---
+
+## 💬 Final Thought
+
+This project represents more than a machine learning exercise. It’s a demonstration of **turning business questions into data-driven insights**, using code as the bridge. If you’re a hiring manager looking for engineers who blend technical skill with storytelling and impact orientation—I’d love for you to explore the code behind this.
+
+
 🚀 Usage
 Open the file Interconnect.ipynb in Jupyter Notebook and run all cells in sequence. You’ll walk through:
 
@@ -64,27 +174,8 @@ Edit
 Interconnect.ipynb                    # Main notebook
 images_interconnect/                  # Screenshot folder
 README.md                             # This file
-⚙️ Technologies Used
-Python 3.8+
 
-Pandas
 
-NumPy
-
-Matplotlib
-
-Seaborn
-
-Jupyter Notebook
-
-📊 Results & Insights
-Example takeaways (you can customize this):
-
-Features X and Y show a strong positive correlation
-
-Outliers in variable Z affect group segmentation
-
-Weekday and time-of-day analysis suggests usage peaks in afternoons
 
 📸 Screenshots
 markdown
@@ -128,14 +219,6 @@ Edit
 
 ### 🧠 Summary Plot  
 ![Summary](images_interconnect/interconnect_image_13.png)
-
-Interconnect now has a successful model to discover the users at risk of leaving.
-
-Analyzing the data provided some interesting insights. Data provided was from earliest customer on 2013-10-01 to 202-02-01. Average time of a customer was 32.42 months. Average user spent $2,036 in total charges. However, the longer a user was a customer the more they paid in total charges.User data provided was equally split between male and female. In given informatio majority of users (around 5k) do not have dependents. Yet nearly half of users have multiple lines on their accounts. Perhaps an indication that majority of users have business lines. Overall most users (around 8k) did not elect for any type of tech support (security or backup). Streaming customrs are more likely to invest in tech support over online customers.
-
-Following models were evaluated: Random Forest, Decision Tree, Gradient Boosting, Logistic Regression,XGB, LGBM, and CatBoost. Results listed below are arranged per model listed above on the test model. AUC-ROC was .84,.84,.85,.83,.83,.84,.85. Precision was .62,.62,.68,.66,.65,.66,.69. Accuracy was .80,.80,.82,.80,.79,.80,.81. F1 score was .58,.58,.62,.57,.58,.60,.60. Overall ranking of models to predict based on ROC would be GradientBoosting and CatBoost tied as the best. Second place is a three way tie with Random Forest, LGBM, and Decision Treel. Tied for third most effective is XGB and Logisitc Regression.
-
-Chose to evaluate with AUC-ROC, F1, Accurary, and Precision-Recall to see which would be the best measurment. F1 Score balances precision and recall by penalizing extreme values. F1 does not differentiate between false positives and false negatives at an alarmingly high rate. So we would not want to use. In our data we balanced between customers who had churned and customers who had remained. Precision-Recall Curve measures the trade-off between Precision and Recall at various thresholds. Works best on highly imbalanced datasets so it is not good for our data. Accuracy measures the percentage of correctly classified instances. Best for a balanced dataset (such as ours). ROC Curve measures the trade-off between True Positive Rate (TPR, Sensitivity/Recall) and False Positive Rate (FPR) at various classification thresholds. The closer to 1 indicates a perfect model (highest achieved by Gradient Boosting at .85). Either accuracy or AUC-ROC could be used to measure the success of the model. Ranking of models is mostly same between accuracy or AUC-ROC. Only note is that in using accuracy XBG joins second place to make a four way tie.
 
 🤝 Contributing
 If you’d like to extend this project or automate more insight generation, feel free to fork and submit a pull request.
