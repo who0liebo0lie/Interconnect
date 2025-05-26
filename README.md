@@ -1,38 +1,6 @@
 # Interconnect
-Interconnect is a telecom company exploring predictions of when a clients would leave. Discovering the at risk of leaving clients the company plans to ffer them incentives to stay. 
+Interconnect is a telecom company exploring predictions of when a clients would leave. Discovering the at risk of leaving clients the company plans to offer them incentives to stay. It includes exploratory data analysis, correlation mapping, and visualization to better understand the structure and insights hidden in the data.
 
-🔗 Interconnect – Data Analysis & Visualization
-
-This project explores patterns, connections, and trends within a dataset referred to as Interconnect. It includes exploratory data analysis, correlation mapping, and visualization to better understand the structure and insights hidden in the data.
-
-📚 Table of Contents
-📌About the Project
-
-🧩 The Challenge
-
-🧪 The Data Journey
-
-⚖️ Target and Data Strategy
-
-🧠 Modeling the Unknown
-
-🏆 The Outcome
-
-🛠 Tools & Stack
-
-🚀 Where It Could Go
-
-💬 Final Thought
-
-Project Structure
-
-Screenshots
-
-Contributing
-
-License
-
-📌 About the Project
 # 📡 Predicting Churn Before It Happens: A Machine Learning Story from Interconnect Telecom
 
 Every company wants to grow. But sometimes, **growth starts with retention**.
@@ -42,7 +10,27 @@ Every company wants to grow. But sometimes, **growth starts with retention**.
 This project uses **machine learning** to answer that question.
 
 ---
+### 🧰 Industry-Ready Techniques Demonstrated
 
+| Skill Category              | Techniques & Tools Used                                                                 |
+|----------------------------|------------------------------------------------------------------------------------------|
+| **Data Quality & Validation** | Custom `evaluate_file()` function, null/missing value handling, duplicate ID checks, data type consistency |
+| **Feature Engineering**     | Derived fields (e.g. `customer_tenure`, total charges), behavioral signals (tech support + streaming), categorical encoding |
+| **Data Preprocessing**      | Outlier removal (0.002%), boolean/integer conversion, `StandardScaler()` normalization, label encoding |
+| **Exploratory Data Analysis (EDA)** | Used `Pandas` and `Seaborn` to uncover trends in churn vs. contract type, payment method, and service usage |
+| **Class Imbalance Handling**| Custom upsampling of churn class in training data to prevent biased models |
+| **End-to-End Model Development** | Full pipeline from raw data → feature engineering → model training → evaluation → interpretation |
+| **Machine Learning Pipeline** | Built reusable `sklearn` pipelines to streamline preprocessing, training, and evaluation |
+| **Supervised Learning Models** | Trained Random Forest, Decision Tree, Logistic Regression, Gradient Boosting, XGBoost, LightGBM, CatBoost, Neural Network |
+| **Gradient Boosting Algorithms** | Evaluated performance of `GradientBoostingClassifier`, `XGBoost`, `LightGBM`, and `CatBoost` on precision and AUC |
+| **Neural Networks**          | Implemented simple feed-forward NN for comparison, tested with structured churn data |
+| **Hyperparameter Tuning**   | Used `GridSearchCV` to optimize parameters for all major models |
+| **Model Evaluation**        | ROC-AUC, F1 Score, Accuracy, Precision-Recall Curves; insights based on dataset balance and business goals |
+| **Model Interpretability**  | Feature importance analysis using tree-based models and visual interpretation of top drivers of churn |
+| **Data Visualization**      | Used `Matplotlib`, `Seaborn`, and `Pandas` plots to show churn distribution, correlation heatmaps, and performance metrics |
+| **Business Insight & Framing** | Connected technical findings to real-world questions: revenue loss from churn, contract impacts, upsell strategy |
+
+---
 ## 🧩 The Challenge
 
 Interconnect's customers subscribe to various services: cloud backups, streaming TV, antivirus protection, and more. Some pay monthly, others commit to longer contracts. Some use electronic billing, others prefer paper. With all these variables, what behaviors signal an unhappy customer?
@@ -111,6 +99,24 @@ Each model was:
 
 ---
 
+🚀 Usage
+Open the file Interconnect.ipynb in Jupyter Notebook and run all cells in sequence. You’ll walk through:
+
+Data loading and preprocessing
+
+Statistical summaries and visual correlation
+
+Multiple layered plots for exploratory analysis
+
+📁 Project Structure
+bash
+Copy
+Edit
+Interconnect.ipynb                    # Main notebook
+images_interconnect/                  # Screenshot folder
+README.md                             # This file
+
+---
 ## 🏆 The Outcome
 
 This project demonstrates how business-critical problems like customer churn can be approached with rigorous machine learning methodology, clear data storytelling, and iterative model evaluation.
@@ -157,30 +163,8 @@ In a production setting, this model could be deployed as a **REST API**, scoring
 
 This project represents more than a machine learning exercise. It’s a demonstration of **turning business questions into data-driven insights**, using code as the bridge. If you’re a hiring manager looking for engineers who blend technical skill with storytelling and impact orientation—I’d love for you to explore the code behind this.
 
-
-🚀 Usage
-Open the file Interconnect.ipynb in Jupyter Notebook and run all cells in sequence. You’ll walk through:
-
-Data loading and preprocessing
-
-Statistical summaries and visual correlation
-
-Multiple layered plots for exploratory analysis
-
-📁 Project Structure
-bash
-Copy
-Edit
-Interconnect.ipynb                    # Main notebook
-images_interconnect/                  # Screenshot folder
-README.md                             # This file
-
-
-
 📸 Screenshots
-markdown
-Copy
-Edit
+
 ### 📈 Sample Data Distribution  
 ![Distribution](images_interconnect/interconnect_image_1.png)
 
